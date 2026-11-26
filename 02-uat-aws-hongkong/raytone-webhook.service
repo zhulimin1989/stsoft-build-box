@@ -1,0 +1,16 @@
+[Unit]
+Description=raytone HK(uat-aws-hongkong)auto-deploy webhook listener
+After=network-online.target docker.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+Environment=PORT=9000
+Environment=DEPLOY_SCRIPT=/root/repo/deploy-on-push-uat-aws-hongkong.sh
+ExecStart=/usr/bin/python3 /root/webhook-listener.py
+Restart=always
+RestartSec=3
+User=root
+
+[Install]
+WantedBy=multi-user.target

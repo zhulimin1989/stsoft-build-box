@@ -1,0 +1,42 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "ECRAuthToken",
+      "Effect": "Allow",
+      "Action": "ecr:GetAuthorizationToken",
+      "Resource": "*"
+    },
+    {
+      "Sid": "ECRPushPullRaytoneRepos",
+      "Effect": "Allow",
+      "Action": [
+        "ecr:BatchCheckLayerAvailability",
+        "ecr:GetDownloadUrlForLayer",
+        "ecr:BatchGetImage",
+        "ecr:InitiateLayerUpload",
+        "ecr:UploadLayerPart",
+        "ecr:CompleteLayerUpload",
+        "ecr:PutImage",
+        "ecr:CreateRepository",
+        "ecr:DescribeRepositories",
+        "ecr:TagResource",
+        "ecr:PutImageScanningConfiguration"
+      ],
+      "Resource": [
+        "arn:aws-cn:ecr:cn-north-1:550022519931:repository/raytone-*"
+      ]
+    },
+    {
+      "Sid": "CodeCommitGitOpsPushPull",
+      "Effect": "Allow",
+      "Action": [
+        "codecommit:GitPull",
+        "codecommit:GitPush"
+      ],
+      "Resource": [
+        "arn:aws-cn:codecommit:cn-north-1:550022519931:aws-eks-raytone-k8s"
+      ]
+    }
+  ]
+}
